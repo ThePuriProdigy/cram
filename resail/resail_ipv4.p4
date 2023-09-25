@@ -21,7 +21,7 @@ limitations under the License.
 // checking.
 //#define __TARGET_TOFINO__ 1
 
-#ifdef TOFINO
+#ifdef TOFINO1
 #include <tna.p4>
 #endif
 
@@ -260,7 +260,7 @@ control ingressImpl(
         actions = {
             set_next_hop_index;
         }
-	    size = 801;
+	    size = INITIAL_LOOKUP_TABLE_SIZE;
     }
     table bitmask_table_24 {
         key = {
@@ -942,7 +942,7 @@ control ingressImpl(
         }
         // 933643 * (1/.80) for expected hash table utilization of 80%
         // -> 1167053
-	size = 1167053;
+	size = HASH_TABLE_SIZE;
     }
     table next_hop_table {
         key = {  
